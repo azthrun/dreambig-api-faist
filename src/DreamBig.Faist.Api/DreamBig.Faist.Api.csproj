@@ -10,4 +10,9 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0-preview.7.25380.108" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DreamBig.Faist.Application\DreamBig.Faist.Application.csproj" />
+    <ProjectReference Include="..\DreamBig.Faist.Infrastructure\DreamBig.Faist.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
