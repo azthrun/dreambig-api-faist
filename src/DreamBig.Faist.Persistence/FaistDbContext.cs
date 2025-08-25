@@ -1,4 +1,5 @@
 using DreamBig.Faist.Domain.Entities;
+using DreamBig.Faist.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Task = DreamBig.Faist.Domain.Entities.Task;
 
@@ -14,7 +15,7 @@ public class FaistDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(FaistDbContext).Assembly);
+        modelBuilder.ApplyConfiguration(new TaskConfiguration());
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

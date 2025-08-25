@@ -1,5 +1,4 @@
 using DreamBig.Faist.Application.Dtos;
-using DreamBig.Faist.Domain.Entities;
 using Mediator;
 using Task = DreamBig.Faist.Domain.Entities.Task;
 
