@@ -6,6 +6,7 @@ using FluentValidation;
 using Mediator;
 
 var builder = WebApplication.CreateSlimBuilder();
+builder.WebHost.UseKestrelHttpsConfiguration();
 
 var configuration = new ConfigurationBuilder()
     .SetBasePath(AppContext.BaseDirectory)
@@ -42,4 +43,4 @@ app.MapGet("/api/users/{userId}/tasks", async (Guid userId, IMediator mediator, 
 })
 .WithName("GetTasksByUserId");
 
-app.Run();
+await app.RunAsync();
