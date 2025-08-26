@@ -1,4 +1,4 @@
-namespace DreamBig.Faist.Application.Dtos;
+namespace DreamBig.Faist.Application.Tasks.Dtos;
 
 public class TaskDto
 {

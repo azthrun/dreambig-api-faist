@@ -1,6 +1,6 @@
 namespace DreamBig.Faist.Domain.Entities;
 
-public class Task : BaseEntity
+public sealed class Task : BaseEntity
 {
     public Guid UserId { get; set; }
     public string? Title { get; set; }

@@ -1,4 +1,4 @@
-using DreamBig.Faist.Application;
+using DreamBig.Faist.Application.Common.Extensions;
 using DreamBig.Faist.Application.Tasks.Queries;
 using DreamBig.Faist.Infrastructure;
 using DreamBig.Faist.Persistence;
