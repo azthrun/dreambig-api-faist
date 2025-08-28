@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json.schemastore.org/prettierrc",
+  "printWidth": 120,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": false,
+  "quoteProps": "as-needed",
+  "trailingComma": "none",
+  "bracketSpacing": true,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": "*.md",
+      "options": { "proseWrap": "preserve" }
+    },
+    {
+      "files": "*.json",
+      "options": { "trailingComma": "none" }
+    },
+    {
+      "files": "*.http",
+      "options": { "printWidth": 120 }
+    },
+    {
+      "files": "*.{yml,yaml}",
+      "options": { "tabWidth": 2 }
+    }
+  ]
+}

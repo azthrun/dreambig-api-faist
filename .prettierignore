@@ -1,0 +1,39 @@
+# Ignore .NET/C# sources and generated files
+**/*.cs
+**/*.cshtml
+**/*.razor
+**/*.csproj
+**/*.sln
+**/*.props
+**/*.targets
+**/*.Designer.cs
+**/*.g.cs
+**/*.g.i.cs
+**/bin/
+**/obj/
+**/.vs/
+**/.idea/
+**/.vscode/
+**/packages/
+**/*.nupkg
+**/*.snupkg
+**/*.nuspec
+
+# Ignore migrations snapshots if any
+**/*Snapshot.cs
+
+# Node and other common folders
+node_modules/
+dist/
+build/
+coverage/
+
+# Keep these formatted by Prettier
+!.github/**/*.yml
+!.github/**/*.yaml
+!.vscode/**/*.json
+!**/*.md
+!**/*.json
+!**/*.yml
+!**/*.yaml
+!**/*.http
