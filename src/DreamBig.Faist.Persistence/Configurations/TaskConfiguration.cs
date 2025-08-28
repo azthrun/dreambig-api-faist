@@ -16,5 +16,10 @@ public class TaskConfiguration : IEntityTypeConfiguration<Task>
 
         builder.Property(t => t.Description)
             .HasMaxLength(500);
+
+        builder.HasOne(t => t.ParentTask)
+            .WithMany(t => t.SubTasks)
+            .HasForeignKey(t => t.ParentTaskId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

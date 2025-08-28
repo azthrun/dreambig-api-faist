@@ -5,7 +5,9 @@ using Task = DreamBig.Faist.Domain.Entities.Task;
 
 namespace DreamBig.Faist.Persistence;
 
-public class FaistDbContext(DbContextOptions<FaistDbContext> options) : DbContext(options)
+public class FaistDbContext(
+    DbContextOptions<FaistDbContext> options
+) : DbContext(options)
 {
 
     public DbSet<Task> Tasks { get; set; }

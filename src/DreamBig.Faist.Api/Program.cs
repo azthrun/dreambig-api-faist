@@ -1,3 +1,4 @@
+using DreamBig.Faist.Api.Middleware;
 using DreamBig.Faist.Application.Common.Extensions;
 using DreamBig.Faist.Application.Tasks.Queries;
 using DreamBig.Faist.Infrastructure;
@@ -23,9 +24,16 @@ builder.Services
     .AddInfrastructure()
     .AddPersistence();
 
+builder.Services.AddHealthChecks()
+    .AddNpgSql(builder.Configuration.GetConnectionString("DefaultConnection")!);
+
 builder.Services.AddScoped<IValidator<GetTasksByUserIdQuery>, GetTasksByUserIdQueryValidator>();
 
+builder.Services.AddTransient<GlobalExceptionHandler>();
+
 var app = builder.Build();
+
+app.UseMiddleware<GlobalExceptionHandler>();
 
 // Configure the HTTP request pipeline.
 if ((app.Configuration["ASPNETCORE_ENVIRONMENT"] ?? "Production") == "Development")
@@ -34,6 +42,8 @@ if ((app.Configuration["ASPNETCORE_ENVIRONMENT"] ?? "Production") == "Developmen
 }
 
 app.UseHttpsRedirection();
+
+app.MapHealthChecks("/healthz");
 
 app.MapGet("/api/users/{userId}/tasks", async (Guid userId, IMediator mediator, CancellationToken cancellationToken) =>
 {

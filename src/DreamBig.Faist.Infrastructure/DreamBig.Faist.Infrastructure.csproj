@@ -2,7 +2,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DreamBig.Faist.Application\DreamBig.Faist.Application.csproj" />
-    <ProjectReference Include="..\DreamBig.Faist.Domain\DreamBig.Faist.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
