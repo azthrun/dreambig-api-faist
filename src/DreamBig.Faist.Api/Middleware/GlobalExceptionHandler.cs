@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DreamBig.Faist.Api.Middleware;
 
-public class GlobalExceptionHandler : IMiddleware
+public sealed class GlobalExceptionHandler : IMiddleware
 {
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {

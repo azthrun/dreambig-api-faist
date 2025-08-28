@@ -2,3 +2,7 @@
 
 GET {{DreamBig.Faist.Api_HostAddress}}/api/users/00000000-0000-0000-0000-000000000000/tasks
 ###
+
+### Health Checks
+GET {{DreamBig.Faist.Api_HostAddress}}/healthz
+###
