@@ -10,9 +10,9 @@ public sealed class GetTasksByUserIdQueryHandler(IUnitOfWork unitOfWork) : IQuer
 
     public async ValueTask<IEnumerable<TaskDto>> Handle(GetTasksByUserIdQuery query, CancellationToken cancellationToken)
     {
-        var tasks = await _unitOfWork.Tasks.GetTasksByUserIdAsync(query.UserId, cancellationToken);
+        IEnumerable<Domain.Entities.Task> tasks = await _unitOfWork.Tasks.GetTasksByUserIdAsync(query.UserId, cancellationToken);
 
-        var taskDtos = tasks.Select(task => new TaskDto
+        IEnumerable<TaskDto> taskDtos = tasks.Select(task => new TaskDto
         {
             Id = task.Id,
             UserId = task.UserId,

@@ -12,17 +12,17 @@ public static class DependencyInjection
     {
         services.AddDbContext<FaistDbContext>((provider, options) =>
         {
-            var configuration = provider.GetRequiredService<IConfiguration>();
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            IConfiguration configuration = provider.GetRequiredService<IConfiguration>();
+            string? connectionString = configuration.GetConnectionString("DefaultConnection");
             ArgumentException.ThrowIfNullOrEmpty(connectionString, "Connection string 'DefaultConnection' not found.");
 
-            var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+            string? dbHost = Environment.GetEnvironmentVariable("DB_HOST");
             ArgumentException.ThrowIfNullOrEmpty(dbHost, "Database host 'DB_HOST' not found.");
-            var dbPort = Environment.GetEnvironmentVariable("DB_PORT");
+            string? dbPort = Environment.GetEnvironmentVariable("DB_PORT");
             ArgumentException.ThrowIfNullOrEmpty(dbPort, "Database port 'DB_PORT' not found.");
-            var dbUser = Environment.GetEnvironmentVariable("DB_USER");
+            string? dbUser = Environment.GetEnvironmentVariable("DB_USER");
             ArgumentException.ThrowIfNullOrEmpty(dbUser, "Database user 'DB_USER' not found.");
-            var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
+            string? dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
             ArgumentException.ThrowIfNullOrEmpty(dbPassword, "Database password 'DB_PASSWORD' not found.");
 
             connectionString = connectionString

@@ -12,7 +12,7 @@ public sealed record GetTasksByUserIdQuery(Guid UserId) : IQuery<IEnumerable<Tas
     public bool IsValid([NotNullWhen(false)] out ValidationError? errorMessage)
     {
         GetTasksByUserIdQueryValidator validator = new();
-        var results = validator.Validate(this);
+        FluentValidation.Results.ValidationResult results = validator.Validate(this);
         errorMessage = results.IsValid
             ? null
             : new ValidationError(results.Errors.Select(e => e.ErrorMessage));

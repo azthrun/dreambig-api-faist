@@ -10,20 +10,20 @@ public class FaistDbContext(
 ) : DbContext(options)
 {
 
-    public DbSet<Task> Tasks { get; set; }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    public DbSet<Task> Tasks
     {
-        modelBuilder.ApplyConfiguration(new TaskConfiguration());
+        get; set;
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder) => modelBuilder.ApplyConfiguration(new TaskConfiguration());
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        var entries = ChangeTracker
+        IEnumerable<Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<BaseEntity>> entries = ChangeTracker
             .Entries<BaseEntity>()
-            .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified);
+            .Where(e => e.State is EntityState.Added or EntityState.Modified);
 
-        foreach (var entityEntry in entries)
+        foreach (Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<BaseEntity>? entityEntry in entries)
         {
             entityEntry.Entity.UpdatedAt = DateTime.UtcNow;
 

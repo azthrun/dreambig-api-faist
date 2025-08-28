@@ -21,7 +21,7 @@ public sealed class GlobalExceptionHandler : IMiddleware
     private static Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
         context.Response.ContentType = "application/problem+json";
-        var problemDetails = new ProblemDetails
+        ProblemDetails problemDetails = new()
         {
             Instance = context.Request.Path
         };
@@ -40,7 +40,7 @@ public sealed class GlobalExceptionHandler : IMiddleware
                 break;
         }
 
-        var result = JsonSerializer.Serialize(problemDetails);
+        string result = JsonSerializer.Serialize(problemDetails);
         return context.Response.WriteAsync(result);
     }
 }
