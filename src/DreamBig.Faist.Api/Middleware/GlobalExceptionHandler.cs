@@ -41,6 +41,7 @@ public sealed class GlobalExceptionHandler : IMiddleware
         }
 
         string result = JsonSerializer.Serialize(problemDetails);
+        context.Response.StatusCode = problemDetails.Status.Value;
         return context.Response.WriteAsync(result);
     }
 }
