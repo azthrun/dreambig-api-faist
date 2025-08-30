@@ -1,0 +1,15 @@
+**/bin/
+**/obj/
+**/.vs/
+**/.vscode/
+**/TestResults/
+.git/
+.github/
+Dockerfile
+*.user
+*.suo
+node_modules/
+*.swp
+*.log
+coverage.opencover.xml
+coveragesettings.runsettings
