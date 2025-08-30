@@ -1,6 +1,6 @@
 # Multi-stage build for DreamBig.Faist API
 # Build stage
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+FROM mcr.microsoft.com/dotnet/nightly/sdk:10.0 AS build
 WORKDIR /src
 
 # Copy csproj files and restore as distinct layers
@@ -19,7 +19,7 @@ WORKDIR /src/src/DreamBig.Faist.Api
 RUN dotnet publish "DreamBig.Faist.Api.csproj" -c Release -o /app/publish --no-restore
 
 # Runtime stage
-FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
+FROM mcr.microsoft.com/dotnet/nightly/aspnet:10.0 AS final
 WORKDIR /app
 
 # Configure Kestrel to listen on HTTP 8080 and HTTPS 8443
@@ -38,7 +38,7 @@ COPY --from=build /app/publish .
 
 # Create and configure a development HTTPS certificate so HTTPS redirection works in containers
 # Generate with SDK image and copy here
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS certgen
+FROM mcr.microsoft.com/dotnet/nightly/sdk:10.0 AS certgen
 RUN dotnet dev-certs https -ep /https/aspnetapp.pfx -p "changeit" -t
 
 FROM final AS withcert
