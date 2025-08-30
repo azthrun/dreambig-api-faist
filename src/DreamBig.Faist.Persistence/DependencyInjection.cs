@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using DreamBig.Faist.Application.Common.Interfaces;
 using DreamBig.Faist.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace DreamBig.Faist.Persistence;
 
+[ExcludeFromCodeCoverage]
 public static class DependencyInjection
 {
     public static IServiceCollection AddPersistence(this IServiceCollection services)

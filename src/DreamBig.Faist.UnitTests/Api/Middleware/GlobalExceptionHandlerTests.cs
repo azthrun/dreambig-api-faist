@@ -8,7 +8,7 @@ using Xunit;
 
 namespace DreamBig.Faist.UnitTests.Api.Middleware;
 
-public class GlobalExceptionHandlerTests
+public sealed class GlobalExceptionHandlerTests
 {
     private readonly GlobalExceptionHandler _handler;
 

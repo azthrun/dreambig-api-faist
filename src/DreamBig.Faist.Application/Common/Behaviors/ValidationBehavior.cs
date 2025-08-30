@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using DreamBig.Faist.Application.Common.Exceptions;
 using DreamBig.Faist.Application.Common.Interfaces;
@@ -5,6 +6,7 @@ using Mediator;
 
 namespace DreamBig.Faist.Application.Common.Behaviors;
 
+[ExcludeFromCodeCoverage]
 internal sealed class ValidationBehavior<TMessage, TResponse> : MessagePreProcessor<TMessage, TResponse> where TMessage : IValidate
 {
     protected override ValueTask Handle(TMessage message, CancellationToken cancellationToken)

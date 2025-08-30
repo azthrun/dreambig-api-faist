@@ -2,7 +2,7 @@ using DreamBig.Faist.Application.Common.Interfaces;
 
 namespace DreamBig.Faist.Persistence;
 
-public class UnitOfWork(
+public sealed class UnitOfWork(
     FaistDbContext context,
     ITaskRepository taskRepository
 ) : IUnitOfWork

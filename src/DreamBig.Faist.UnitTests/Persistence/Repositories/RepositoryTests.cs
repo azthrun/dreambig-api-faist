@@ -7,7 +7,7 @@ using Task = DreamBig.Faist.Domain.Entities.Task;
 
 namespace DreamBig.Faist.UnitTests.Persistence.Repositories;
 
-public class RepositoryTests
+public sealed class RepositoryTests
 {
     private readonly FaistDbContext _context;
     private readonly Repository<Task> _repository;

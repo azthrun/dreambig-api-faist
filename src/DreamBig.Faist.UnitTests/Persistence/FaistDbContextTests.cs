@@ -6,7 +6,7 @@ using Task = DreamBig.Faist.Domain.Entities.Task;
 
 namespace DreamBig.Faist.UnitTests.Persistence;
 
-public class FaistDbContextTests
+public sealed class FaistDbContextTests
 {
     private readonly FaistDbContext _context;
 

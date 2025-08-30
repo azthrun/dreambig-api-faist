@@ -9,7 +9,7 @@ using Task = DreamBig.Faist.Domain.Entities.Task;
 
 namespace DreamBig.Faist.UnitTests.Application.Tasks.Queries;
 
-public class GetTasksByUserIdQueryHandlerTests
+public sealed class GetTasksByUserIdQueryHandlerTests
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly GetTasksByUserIdQueryHandler _handler;
@@ -26,14 +26,13 @@ public class GetTasksByUserIdQueryHandlerTests
         // Arrange
         Guid userId = Guid.NewGuid();
         List<Task> tasks =
-
         [
             new Task { Id = Guid.NewGuid(), UserId = userId, Title = "Task 1", Description = "Description 1", IsCompleted = false },
             new Task { Id = Guid.NewGuid(), UserId = userId, Title = "Task 2", Description = "Description 2", IsCompleted = true }
         ];
         GetTasksByUserIdQuery query = new(userId);
 
-        _unitOfWork.Tasks.GetTasksByUserIdAsync(userId, Arg.Any<CancellationToken>()).Returns(System.Threading.Tasks.Task.FromResult<IEnumerable<Task>>(tasks));
+        _unitOfWork.Tasks.GetTasksByUserIdAsync(userId, Arg.Any<CancellationToken>()).Returns(tasks);
 
         // Act
         IEnumerable<TaskDto> result = await _handler.Handle(query, CancellationToken.None);
@@ -53,7 +52,7 @@ public class GetTasksByUserIdQueryHandlerTests
         Guid userId = Guid.NewGuid();
         GetTasksByUserIdQuery query = new(userId);
 
-        _unitOfWork.Tasks.GetTasksByUserIdAsync(userId, Arg.Any<CancellationToken>()).Returns(System.Threading.Tasks.Task.FromResult<IEnumerable<Task>>([]));
+        _unitOfWork.Tasks.GetTasksByUserIdAsync(userId, Arg.Any<CancellationToken>()).Returns([]);
 
         // Act
         IEnumerable<TaskDto> result = await _handler.Handle(query, CancellationToken.None);

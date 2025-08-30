@@ -4,7 +4,7 @@ using Task = DreamBig.Faist.Domain.Entities.Task;
 
 namespace DreamBig.Faist.Persistence.Configurations;
 
-public class TaskConfiguration : IEntityTypeConfiguration<Task>
+public sealed class TaskConfiguration : IEntityTypeConfiguration<Task>
 {
     public void Configure(EntityTypeBuilder<Task> builder)
     {

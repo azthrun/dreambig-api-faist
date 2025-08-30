@@ -9,74 +9,73 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace DreamBig.Faist.Persistence.Migrations
+namespace DreamBig.Faist.Persistence.Migrations;
+
+[DbContext(typeof(FaistDbContext))]
+[Migration("20250827131917_Task_Add_SubTask_Relationship")]
+partial class Task_Add_SubTask_Relationship
 {
-    [DbContext(typeof(FaistDbContext))]
-    [Migration("20250827131917_Task_Add_SubTask_Relationship")]
-    partial class Task_Add_SubTask_Relationship
+    /// <inheritdoc />
+    protected override void BuildTargetModel(ModelBuilder modelBuilder)
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+        modelBuilder
+            .HasAnnotation("ProductVersion", "8.0.0")
+            .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+        NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("DreamBig.Faist.Domain.Entities.Task", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+        modelBuilder.Entity("DreamBig.Faist.Domain.Entities.Task", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uuid");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime>("CreatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
+                b.Property<string>("Description")
+                    .HasMaxLength(500)
+                    .HasColumnType("character varying(500)");
 
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("boolean");
+                b.Property<bool>("IsCompleted")
+                    .HasColumnType("boolean");
 
-                    b.Property<Guid?>("ParentTaskId")
-                        .HasColumnType("uuid");
+                b.Property<Guid?>("ParentTaskId")
+                    .HasColumnType("uuid");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                b.Property<string>("Title")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("character varying(100)");
 
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime>("UpdatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
+                b.Property<Guid>("UserId")
+                    .HasColumnType("uuid");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("ParentTaskId");
+                b.HasIndex("ParentTaskId");
 
-                    b.ToTable("Tasks");
-                });
+                b.ToTable("Tasks");
+            });
 
-            modelBuilder.Entity("DreamBig.Faist.Domain.Entities.Task", b =>
-                {
-                    b.HasOne("DreamBig.Faist.Domain.Entities.Task", "ParentTask")
-                        .WithMany("SubTasks")
-                        .HasForeignKey("ParentTaskId")
-                        .OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity("DreamBig.Faist.Domain.Entities.Task", b =>
+            {
+                b.HasOne("DreamBig.Faist.Domain.Entities.Task", "ParentTask")
+                    .WithMany("SubTasks")
+                    .HasForeignKey("ParentTaskId")
+                    .OnDelete(DeleteBehavior.Restrict);
 
-                    b.Navigation("ParentTask");
-                });
+                b.Navigation("ParentTask");
+            });
 
-            modelBuilder.Entity("DreamBig.Faist.Domain.Entities.Task", b =>
-                {
-                    b.Navigation("SubTasks");
-                });
+        modelBuilder.Entity("DreamBig.Faist.Domain.Entities.Task", b =>
+            {
+                b.Navigation("SubTasks");
+            });
 #pragma warning restore 612, 618
-        }
     }
 }

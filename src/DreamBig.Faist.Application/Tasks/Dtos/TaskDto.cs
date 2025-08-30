@@ -1,6 +1,6 @@
 namespace DreamBig.Faist.Application.Tasks.Dtos;
 
-public class TaskDto
+public sealed class TaskDto
 {
     public Guid Id
     {

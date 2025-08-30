@@ -8,7 +8,7 @@ using Xunit;
 
 namespace DreamBig.Faist.UnitTests.Application.Common.Extensions;
 
-public class DependencyInjectionTests
+public sealed class DependencyInjectionTests
 {
     [Fact(DisplayName = "AddApplication should register Mediator with a scoped lifetime")]
     public void AddApplication_Should_Register_Mediator()
