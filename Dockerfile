@@ -1,6 +1,6 @@
 # Multi-stage build for DreamBig.Faist API
 # Build stage
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
 # Copy csproj files and restore as distinct layers
@@ -38,7 +38,7 @@ COPY --from=build /app/publish .
 
 # Create and configure a development HTTPS certificate so HTTPS redirection works in containers
 # Generate with SDK image and copy here
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS certgen
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS certgen
 RUN dotnet dev-certs https -ep /https/aspnetapp.pfx -p "changeit" -t
 
 FROM final AS withcert
